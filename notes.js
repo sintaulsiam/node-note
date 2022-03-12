@@ -1,4 +1,5 @@
 const fs = require("fs");
+const chalk = require("chalk");
 
 const getNotes = function () {
   return fs.readFileSync("notes.txt", "utf8");
@@ -13,12 +14,20 @@ const addNotes = function (title, body) {
       title,
       body,
     });
-    console.log("Note added");
+    console.log(chalk.bgGreen("Note added"));
   } else {
-    console.log("note title taken");
+    console.log(chalk.bgRed("note title taken"));
   }
-
   saveNotes(notes);
+};
+
+const removeNote = function (title) {
+  const notes = loadNotes();
+  const notesToKeep = notes.filter((n) => n.title !== title);
+  saveNotes(notesToKeep);
+  notes.length > notesToKeep
+    ? console.log(chalk.bgGreen("Note removed: " + title))
+    : console.log(chalk.bgRed("No note found to remove"));
 };
 
 const saveNotes = function (notes) {
@@ -37,6 +46,7 @@ const loadNotes = function () {
 };
 
 module.exports = {
-  getNotes: getNotes,
-  addNotes: addNotes,
+  getNotes,
+  addNotes,
+  removeNote,
 };
