@@ -1,0 +1,15 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "this is a not app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sintaul mahdi siam",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "yargs": "^17.3.1"
+  }
+}
