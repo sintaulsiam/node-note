@@ -5,6 +5,15 @@ const getNotes = function () {
   return fs.readFileSync("notes.txt", "utf8");
 };
 
+const listNotes = function () {
+  const notes = loadNotes();
+  console.log(chalk.bgRed("Your notes:"));
+
+  notes.forEach((element) => {
+    console.log(element.title);
+  });
+};
+
 const addNotes = function (title, body) {
   const notes = loadNotes();
   const duplicateNotes = notes.filter((n) => n.title === title);
@@ -49,4 +58,5 @@ module.exports = {
   getNotes,
   addNotes,
   removeNote,
+  listNotes,
 };
