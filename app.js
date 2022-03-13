@@ -60,8 +60,8 @@ yargs.command({
       type: "Stirng",
     },
   },
-  handler: function () {
-    console.log("reading the note");
+  handler: function (argv) {
+    notes.readNote(argv.title);
   },
 });
 

@@ -1,5 +1,6 @@
 const fs = require("fs");
 const chalk = require("chalk");
+const { title } = require("process");
 
 const getNotes = function () {
   return fs.readFileSync("notes.txt", "utf8");
@@ -39,6 +40,17 @@ const removeNote = function (title) {
     : console.log(chalk.bgRed("No note found to remove"));
 };
 
+const readNote = function (title) {
+  notes = loadNotes();
+  noteToRead = notes.find((n) => n.title === title);
+  if (!noteToRead) {
+    console.log(chalk.bgRed("No node found to read"));
+    return;
+  }
+  console.log(chalk.bgRed(noteToRead.title));
+  console.log(noteToRead.body);
+};
+
 const saveNotes = function (notes) {
   const dataJSON = JSON.stringify(notes);
   fs.writeFileSync("notes.json", dataJSON);
@@ -59,4 +71,5 @@ module.exports = {
   addNotes,
   removeNote,
   listNotes,
+  readNote,
 };
